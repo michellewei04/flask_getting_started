@@ -22,12 +22,16 @@ def getHello(name):
 @app.route("/distance", methods=["POST"])
 def postDistance():
     r = request.get_json()
-    d = sqrt(square((r["a"][0]-r["b"][0]))+square((r["a"][1]-r["b"][1])))
+    d = calcDistance(r["a"], r["b"])
     res = {
         "distance": d
     }
-
     return jsonify(res)
+
+
+def calcDistance(a, b):
+    distance = sqrt(square(a[0] - b[0]) + square(a[1] - b[1]))
+    return distance
 
 
 if __name__ == "__main__":
